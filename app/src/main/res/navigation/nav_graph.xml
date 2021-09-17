@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SplashFragment">
+
+
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.oringnet.wm.ui.splash.SplashFragment"
+        android:label="Splash"
+        >
+        <action
+            android:id="@+id/toStartPage"
+            app:destination="@id/StartFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/StartFragment"
+        android:name="com.oringnet.wm.ui.start.StartFragment"
+        android:label="Start"
+        >
+        <action
+            android:id="@+id/toDeviceListPage"
+            app:destination="@id/DeviceListFragment" />
+    </fragment>
+
+
+
+
+    <fragment
+        android:id="@+id/DeviceListFragment"
+        android:name="com.oringnet.wm.ui.deviceList.DeviceListFragment"
+        android:label="DeviceList"
+        >
+        <action
+            android:id="@+id/toLoginPage"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.oringnet.wm.ui.login.LoginFragment"
+        android:label="Login"
+        >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.oringnet.wm.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.oringnet.wm.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+</navigation>
