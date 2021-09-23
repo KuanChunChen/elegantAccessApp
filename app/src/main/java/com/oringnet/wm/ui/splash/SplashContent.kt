@@ -17,14 +17,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.fragment.NavHostFragment
 import com.oringnet.wm.R
 import com.oringnet.wm.ui.theme.EaYellow
-import timber.log.Timber
 
 @ExperimentalAnimationApi
 @Composable
-fun SplashCard(event: () -> Unit = {}) {
+fun SplashContent(event: () -> Unit = {}) {
 
 
 
@@ -38,14 +36,10 @@ fun SplashCard(event: () -> Unit = {}) {
                     .fillMaxSize(),
             ) {
 
-
                 SplashLogo(event = event)
-
             }
         }
     )
-
-
 }
 
 
@@ -116,5 +110,5 @@ fun SplashLogo(event:()->Unit= {}){
 @Preview
 @Composable
 fun PreviewSplashCard(){
-    SplashCard()
+    SplashContent()
 }
