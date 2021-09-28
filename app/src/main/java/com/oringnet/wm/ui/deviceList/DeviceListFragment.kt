@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ViewWindowInsetObserver
@@ -31,6 +34,7 @@ class DeviceListFragment : Fragment() {
 
         val windowInsets = ViewWindowInsetObserver(this)
             .start(windowInsetsAnimationsEnabled = true)
+        val model: DeviceViewModel by activityViewModels()
 
         setContent {
 //            CompositionLocalProvider(
@@ -38,7 +42,7 @@ class DeviceListFragment : Fragment() {
 //                LocalWindowInsets provides windowInsets)
 //            {
                 WeidumllerAppTheme() {
-                    DeviceListContent(exampleDeviceListData){
+                    DeviceListContent(model){
 
                         val bundle = bundleOf("DeviceName" to it.deviceName)
                         NavHostFragment

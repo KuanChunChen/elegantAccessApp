@@ -1,5 +1,6 @@
 package com.oringnet.wm.data
 
+import androidx.lifecycle.LiveData
 import com.oringnet.wm.ui.deviceList.BleDevice
 import com.oringnet.wm.ui.deviceList.DeviceListData
 
@@ -47,37 +48,51 @@ private val initialBleDevice = listOf(
     BleDevice(
         "Demo009",
         "12:33:b2:a1:2b:cc",
-        44
+        -4
     ),
     BleDevice(
         "Demo010",
         "12:33:22:11:2b:cc",
-        62
+        2
     ),
     BleDevice(
         "Demo011",
         "cc:33:32:dd:2b:cc",
-        62
+        55
     ),
     BleDevice(
         "Demo012",
         "ac:ba:ff:11:2b:cc",
-        62
+        41
     ),
     BleDevice(
         "Demo013",
         "ad:da:fa:11:2b:cc",
-        62
+        32
     ),
     BleDevice(
         "Demo014",
         "ab:cd:22:11:2b:cc",
-        62
+        12
     )
 )
 
 
+private val secondTestData = listOf(
+    BleDevice(
+        "Demo303",
+        "10:20:30:a1:2b:cc",
+        -17
+    )
+)
+
 val exampleDeviceListData = DeviceListData(initialBleDevice)
 
+fun getBleList(): List<BleDevice> {
+    return initialBleDevice
+}
 
+fun getSecondBleList(): List<BleDevice> {
+    return secondTestData
+}
 

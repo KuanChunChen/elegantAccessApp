@@ -12,6 +12,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,8 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.oringnet.wm.R
 import com.oringnet.wm.data.exampleDeviceListData
 import com.oringnet.wm.ui.base.WmAppBar
@@ -32,7 +33,7 @@ import com.oringnet.wm.ui.theme.WmGray
 
 @Composable
 fun DeviceListContent(
-    deviceListData: DeviceListData,
+    deviceViewModel: DeviceViewModel = viewModel(),
     modifier: Modifier = Modifier,
     navigateToLogin: (BleDevice) -> Unit
 ) {
@@ -41,7 +42,7 @@ fun DeviceListContent(
 
 
     Surface(modifier = modifier) {
-        Column(modifier = Modifier.wrapContentHeight()) {
+        Column(modifier = Modifier.fillMaxHeight()) {
             WmAppBar()
 
             Text(
@@ -52,12 +53,13 @@ fun DeviceListContent(
                 fontSize = 24.sp,
                 color = Color.Black
             )
+            val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 
             BleDeviceCards(
-                bleDevice = deviceListData.bleDevice,
+                bleDevice = devices,
                 navigateToLogin = navigateToLogin,
                 scrollState = scrollState
-                )
+            )
         }
     }
 }
@@ -65,7 +67,7 @@ fun DeviceListContent(
 @Preview
 @Composable
 fun PreviewDeviceListContent() {
-    DeviceListContent(exampleDeviceListData, Modifier) {}
+    DeviceListContent(deviceViewModel = DeviceViewModel(), modifier = Modifier) {}
 }
 
 @Composable
