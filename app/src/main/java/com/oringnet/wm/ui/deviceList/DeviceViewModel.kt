@@ -1,6 +1,5 @@
 package com.oringnet.wm.ui.deviceList
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,8 @@ import timber.log.Timber
 class DeviceViewModel : ViewModel() {
 
     private val _devices: MutableLiveData<List<BleDevice>> = MutableLiveData<List<BleDevice>>()
+
+    var isRefreshing: MutableLiveData<Boolean> = MutableLiveData(false)
 
     val devices: LiveData<List<BleDevice>> = _devices
 
@@ -21,6 +22,18 @@ class DeviceViewModel : ViewModel() {
     fun onDevicesChange(listDevices: List<BleDevice>) {
         _devices.value = listDevices
     }
+
+    fun addDevice(bleDevice: BleDevice) {
+        _devices.value!!.toMutableList().let {
+            it.add(bleDevice)
+            _devices.value = it
+        }
+    }
+
+    fun clearDevices(){
+        _devices.value = emptyList()
+    }
+
 
 
     override fun onCleared() {
