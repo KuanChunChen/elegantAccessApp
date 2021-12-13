@@ -11,7 +11,8 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,26 +23,34 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.oringnet.wm.R
 import com.oringnet.wm.data.exampleDeviceListData
+import com.oringnet.wm.data.getSecondBleList
 import com.oringnet.wm.ui.base.WmAppBar
 import com.oringnet.wm.ui.theme.WmGray
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun DeviceListContent(
-    deviceListData: DeviceListData,
+    deviceViewModel: DeviceViewModel = viewModel(),
     modifier: Modifier = Modifier,
-    navigateToLogin: (BleDevice) -> Unit
+    navigateToLogin: (BleDevice) -> Unit = {},
+    onSwipeRefresh: () -> Unit = {},
 ) {
 
     val scrollState = rememberLazyListState()
-
+    val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 
     Surface(modifier = modifier) {
-        Column(modifier = Modifier.wrapContentHeight()) {
+        Column(modifier = Modifier.fillMaxHeight()) {
             WmAppBar()
 
             Text(
@@ -53,11 +62,16 @@ fun DeviceListContent(
                 color = Color.Black
             )
 
+
+
             BleDeviceCards(
-                bleDevice = deviceListData.bleDevice,
+                bleDevice = devices,
                 navigateToLogin = navigateToLogin,
-                scrollState = scrollState
-                )
+                scrollState = scrollState,
+                deviceViewModel = deviceViewModel,
+                onSwipeRefresh = onSwipeRefresh
+            )
+
         }
     }
 }
@@ -65,7 +79,7 @@ fun DeviceListContent(
 @Preview
 @Composable
 fun PreviewDeviceListContent() {
-    DeviceListContent(exampleDeviceListData, Modifier) {}
+    DeviceListContent(deviceViewModel = DeviceViewModel(), modifier = Modifier) {}
 }
 
 @Composable
@@ -73,19 +87,44 @@ fun BleDeviceCards(
     bleDevice: List<BleDevice>,
     navigateToLogin: (BleDevice) -> Unit,
     scrollState: LazyListState,
-    modifier: Modifier = Modifier
-){
-    LazyColumn(
-        state = scrollState,
-        modifier = modifier
-    ){
-        item {
-            bleDevice.forEach { bleDevice ->
-                BleDeviceCard(bleDevice, navigateToLogin)
+    modifier: Modifier = Modifier,
+    deviceViewModel: DeviceViewModel,
+    onSwipeRefresh: () -> Unit = {},
+) {
 
+    val isRefreshing by deviceViewModel.isRefreshing.observeAsState()
+
+
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing!!),
+        onRefresh = {
+            onSwipeRefresh()
+        },
+        indicator = { state, trigger ->
+            SwipeRefreshIndicator(
+                state = state,
+                refreshTriggerDistance = trigger,
+                contentColor = Color.Black,
+                arrowEnabled = true,
+                fade = true,
+                scale = true,
+                backgroundColor = MaterialTheme.colors.primary,
+            )
+        },
+    ) {
+        LazyColumn(
+            state = scrollState,
+            modifier = modifier.fillMaxHeight()
+        ) {
+            item {
+                bleDevice.forEach { bleDevice ->
+                    BleDeviceCard(bleDevice, navigateToLogin)
+
+                }
             }
         }
     }
+
 
 }
 
@@ -150,7 +189,8 @@ fun BleDeviceCard(bleDevice: BleDevice, navigateToLogin: (BleDevice) -> Unit) {
         Modifier
             .fillMaxWidth()
             .height(1.dp)
-            .padding(start = 8.dp, end = 8.dp))
+            .padding(start = 8.dp, end = 8.dp)
+    )
 
 
 
@@ -185,5 +225,5 @@ fun getPainterResource(signalValue: Int): Painter {
 @Preview
 @Composable
 fun PreviewBleDeviceCard() {
-    BleDeviceCard(BleDevice("device 1","00:00:00:a1:2b:cc",-87)) {}
+    BleDeviceCard(BleDevice(null,"device 1","00:00:00:a1:2b:cc",-87)) {}
 }
