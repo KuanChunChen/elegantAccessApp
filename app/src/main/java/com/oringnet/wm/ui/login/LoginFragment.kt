@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.ViewWindowInsetObserver
 import com.oringnet.wm.ui.WeidumllerAppTheme
-import com.oringnet.wm.ui.deviceList.LocalBackPressedDispatcher
 
 class LoginFragment  :  Fragment() {
     override fun onCreateView(

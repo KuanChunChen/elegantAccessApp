@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.oringnet.wm.R
+import com.oringnet.wm.ui.theme.EaYellow
 import com.oringnet.wm.ui.theme.WmOrange
 
 
@@ -59,7 +60,7 @@ fun StartContent(modifier: Modifier = Modifier,onButtonAction:()->Unit={}) {
 @Composable
 fun LogoCard(){
     Image(
-        painter = painterResource(R.drawable.logo_orange_3x),
+        painter = painterResource(R.drawable.kc_cover_logo),
         contentDescription = "Logo",
         modifier = Modifier
             .wrapContentHeight()
@@ -67,11 +68,11 @@ fun LogoCard(){
 
     )
     Text(
-        text = "IoT Terminal Block",
+        text = "Enjoy!",
         modifier = Modifier
             .wrapContentWidth()
             .height(40.dp),
-        fontSize = 24.sp
+        fontSize = 14.sp
     )
 }
 @Composable
@@ -85,7 +86,7 @@ fun StartButton(onButtonAction:()->Unit={}){
         modifier = Modifier
             .height(50.dp)
             .wrapContentWidth(),
-        colors = ButtonDefaults.buttonColors(backgroundColor = WmOrange)
+        colors = ButtonDefaults.buttonColors(backgroundColor = EaYellow)
 
 
     ) {
