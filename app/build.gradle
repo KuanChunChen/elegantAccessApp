@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "com.diffplug.gradle.spotless" version "3.24.0"
 
 }
 
@@ -36,13 +37,18 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.5.21'
-    }
 
     buildFeatures {
         compose true
+    }
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint(ktlintVersion)
+        }
+        java {
+            target "**/*.java"
+        }
     }
 
     
@@ -97,3 +103,4 @@ dependencies {
     // Optional -- Mockito framework
     testImplementation("org.mockito:mockito-core:1.10.19")
 }
+

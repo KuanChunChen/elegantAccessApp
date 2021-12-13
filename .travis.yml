@@ -1,0 +1,32 @@
+language: android
+jdk: oraclejdk11
+dist: trusty
+
+android:
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+ 
+  components:
+    - tools
+    - build-tools-30.0.2
+    - android-30
+    - android-22
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-22
+
+before_install:
+  - chmod +x gradlew
+  - yes | sdkmanager "platforms;android-30"
+# script:
+  # - ./gradlew clean
+# before_cache:
+  # - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.idea/
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
