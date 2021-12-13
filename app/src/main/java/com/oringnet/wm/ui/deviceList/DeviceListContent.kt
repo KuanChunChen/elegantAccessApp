@@ -225,5 +225,5 @@ fun getPainterResource(signalValue: Int): Painter {
 @Preview
 @Composable
 fun PreviewBleDeviceCard() {
-    BleDeviceCard(BleDevice("device 1","00:00:00:a1:2b:cc",-87)) {}
+    BleDeviceCard(BleDevice(null,"device 1","00:00:00:a1:2b:cc",-87)) {}
 }

@@ -86,6 +86,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
 
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+
     /** unit test library */
     // Required -- JUnit 4 framework
     testImplementation("junit:junit:4.12")

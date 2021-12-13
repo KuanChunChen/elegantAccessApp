@@ -7,6 +7,9 @@ import android.content.Intent
 import timber.log.Timber
 
 
+
+
+
 class DeviceListBoardCast(private val onBleDeviceFound: (bluetoothDevice: BleDevice) -> Unit = {}) : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         when(intent.action) {
@@ -19,8 +22,19 @@ class DeviceListBoardCast(private val onBleDeviceFound: (bluetoothDevice: BleDev
 //                } else {
 //                    BleDevice(device.name, device.address, rssi)
 //                }
+
+                val uuidExtra = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID)
+                println("DeviceExtra address - " + device.address)
+                if (uuidExtra != null) {
+                    for (p in uuidExtra) {
+                        println("uuidExtra - $p")
+                    }
+                } else {
+                    println("uuidExtra is still null")
+                }
+
                 if (null != device.name) {
-                    onBleDeviceFound.invoke(BleDevice(device.name, device.address, rssi))
+                    onBleDeviceFound.invoke(BleDevice(device, device.name, device.address, rssi))
                 }
 
 

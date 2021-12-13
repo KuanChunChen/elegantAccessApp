@@ -1,5 +1,6 @@
 package com.oringnet.wm.ui.deviceList
 
+import android.bluetooth.BluetoothDevice
 import androidx.compose.runtime.mutableStateListOf
 
 class DeviceListData(initialBleDevice: List<BleDevice>) {
@@ -16,4 +17,9 @@ class DeviceListData(initialBleDevice: List<BleDevice>) {
 }
 
 
-data class BleDevice(val deviceName: String, val bleAddress: String, val signalValue: Int)
+data class BleDevice(
+    var bluetoothDevice: BluetoothDevice? = null,
+    val deviceName: String,
+    val bleAddress: String,
+    val signalValue: Int
+)
