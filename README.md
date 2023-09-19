@@ -1,5 +1,7 @@
-# elegantAccessApp
+# Android低功耗藍芽Gatt連線教學：使用Kotlin實作
 elegant_access_app
+
+詳細教學：https://elegantaccess.org/2021/11/12/android-kotlin-bluetooth-gatt-client/
 
 <div class="c-border-main-title-2">前言</div>
 
