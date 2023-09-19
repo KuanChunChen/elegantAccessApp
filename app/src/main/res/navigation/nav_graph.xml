@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/SplashFragment"
-        android:name="com.oringnet.wm.ui.splash.SplashFragment"
+        android:name="com.elegant.access.ui.splash.SplashFragment"
         android:label="Splash"
         >
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/StartFragment"
-        android:name="com.oringnet.wm.ui.start.StartFragment"
+        android:name="com.elegant.access.ui.start.StartFragment"
         android:label="Start"
         >
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/DeviceListFragment"
-        android:name="com.oringnet.wm.ui.deviceList.DeviceListFragment"
+        android:name="com.elegant.access.ui.deviceList.DeviceListFragment"
         android:label="DeviceList"
         >
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.oringnet.wm.ui.login.LoginFragment"
+        android:name="com.elegant.access.ui.login.LoginFragment"
         android:label="Login"
         >
 
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.oringnet.wm.FirstFragment"
+        android:name="com.elegant.access.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -61,7 +61,7 @@
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.oringnet.wm.SecondFragment"
+        android:name="com.elegant.access.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

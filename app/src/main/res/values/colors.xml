@@ -6,25 +6,14 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    <color name="oring_red_dark">#FFCA0515</color>
-    <color name="oring_red_light">#FFFFE5F4</color>
-    <color name="oring_red_stroke">#FFFF487F</color>
-    <color name="oring_blue_dark">#FF0515CA</color>
-    <color name="oring_blue_dark_dis">#400515CA</color>
-    <color name="oring_blue_light">#FFE5F4FF</color>
-    <color name="oring_blue_light_dis">#40E5F4FF</color>
-    <color name="oring_blue_stroke">#FF487FFF</color>
-    <color name="oring_blue_stroke_dis">#40487FFF</color>
-    <color name="oring_gray_dark">#FF767676</color>
-    <color name="oring_gray_light">#FFB9B9B9</color>
-    <color name="wm_black">#FF0A0A0A</color>
-    <color name="wm_gray">#FFE7E7E7</color>
-    <color name="wm_gray_half">#FF808080</color>
-    <color name="wm_gray_dark">#FFB4B4B4</color>
-    <color name="wm_gray_light">#FFCDCDCD</color>
-    <color name="wm_orange">#FFEB8C00</color>
-    <color name="wm_orange_dark">#FFE18200</color>
-    <color name="wm_orange_light">#FFFFC54B</color>
-    <color name="wm_green">#09b689</color>
+    <color name="black_ff0a0a0a">#FF0A0A0A</color>
+    <color name="gray">#FFE7E7E7</color>
+    <color name="gray_half">#FF808080</color>
+    <color name="gray_dark">#FFB4B4B4</color>
+    <color name="gray_light">#FFCDCDCD</color>
+    <color name="orange">#FFEB8C00</color>
+    <color name="orange_dark">#FFE18200</color>
+    <color name="orange_light">#FFFFC54B</color>
+    <color name="green">#09b689</color>
     <color name="ea_yellow">#FFF6C33F</color>
 </resources>
