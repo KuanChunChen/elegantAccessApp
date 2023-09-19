@@ -13,8 +13,6 @@ open class BaseApplication : MultiDexApplication() {
 
         if (BuildConfig.DEBUG) {
         }
-
-
     }
 
 }
