@@ -148,7 +148,7 @@ fun BleDeviceCard(bleDevice: BleDevice, navigateToLogin: (BleDevice) -> Unit) {
 
         )
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(54.dp))
 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(

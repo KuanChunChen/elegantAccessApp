@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.oringnet.wm"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
@@ -107,5 +107,10 @@ dependencies {
     testImplementation('androidx.test:core:1.4.0')
     // Optional -- Mockito framework
     testImplementation("org.mockito:mockito-core:1.10.19")
+
+    def room_version = "2.4.0"
+
+    implementation "androidx.room:room-runtime:2.4.0"
+//    kapt "androidx.room:room-compiler:2.4.0"
 }
 

@@ -162,7 +162,7 @@ fun LoginTextField(
 
     Column(modifier = modifier) {
         Text(text = title,
-            fontSize = 16.sp,
+            fontSize = 12.sp,
             modifier = Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.height(8.dp))

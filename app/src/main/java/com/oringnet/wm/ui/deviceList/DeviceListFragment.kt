@@ -11,10 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.NavHostFragment
 import com.google.accompanist.insets.ViewWindowInsetObserver
+import com.oringnet.wm.R
 import com.oringnet.wm.base.constant.BluetoothConstant.REQUEST_ENABLE_BT
 import com.oringnet.wm.base.extension.requestMultiplePermissions
 import com.oringnet.wm.service.BluetoothLeService
@@ -82,10 +85,10 @@ class DeviceListFragment : Fragment() {
                             currentChooseDevice = it.bleAddress
                             val gattServiceIntent = Intent(context, BluetoothLeService::class.java)
                             requireActivity().bindService(gattServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
-//                            val bundle = bundleOf("DeviceName" to it.deviceName)
-//                            NavHostFragment
-//                                .findNavController(this@DeviceListFragment)
-//                                .navigate(R.id.toLoginPage, bundle)
+                            val bundle = bundleOf("DeviceName" to it.deviceName)
+                            NavHostFragment
+                                .findNavController(this@DeviceListFragment)
+                                .navigate(R.id.toLoginPage, bundle)
                         },
                         onSwipeRefresh = {
                             scanBleDevice(false)
@@ -105,6 +108,8 @@ class DeviceListFragment : Fragment() {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
         }
+
+
 
         val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
         pairedDevices?.forEach { device ->

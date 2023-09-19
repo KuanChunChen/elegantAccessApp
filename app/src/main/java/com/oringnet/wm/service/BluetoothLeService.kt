@@ -158,8 +158,7 @@ class BluetoothLeService() : Service() {
     private fun broadcastUpdate(action: String, characteristic: BluetoothGattCharacteristic) {
         val intent = Intent(action)
 
-        // This is special handling for the Heart Rate Measurement profile. Data
-        // parsing is carried out as per profile specifications.
+
         when (characteristic.uuid) {
             UUID_DEMO_DEVICE -> {
                 val flag = characteristic.properties
@@ -178,7 +177,6 @@ class BluetoothLeService() : Service() {
                 intent.putExtra(EXTRA_DATA, (heartRate).toString())
             }
             else -> {
-                // For all other profiles, writes the data formatted in HEX.
                 val data: ByteArray? = characteristic.value
                 if (data?.isNotEmpty() == true) {
                     val hexString: String = data.joinToString(separator = " ") {
